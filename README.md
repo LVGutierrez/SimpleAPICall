@@ -10,14 +10,14 @@
     
     func ApiManager() {
         
-        // API url goes here
-        let myUrl = "YOUR URL HERE"
+        // API url
+        let myUrl = "url string"
         let dataURL = NSURL(string: myUrl)!
         
-        // Prepares session
+        // Prepare session
         let session = NSURLSession.sharedSession()
         
-        // Calls url
+        // Call url
         let task = session.dataTaskWithURL(dataURL) { (data, response, error) in
             
             // Checks for errors
@@ -39,7 +39,7 @@
                                 // Gets API data
                                 if let dictionary = userData as? [NSObject: AnyObject] {
                                     
-                                    // Sends Api data to another function where JSON objects are called
+                                    // Sends Api data to function where JSON objects are called
                                     self.jsonData(dictionary)
                                 }
                             }
@@ -61,7 +61,7 @@
     
     func jsonData(object: [NSObject: AnyObject]) {
     
-        // JSON Code Here
+        // JSON data
     
     } // end jsonData
 </code>
