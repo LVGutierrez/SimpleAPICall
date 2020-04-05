@@ -31,10 +31,10 @@ class ViewController: UIViewController {
         let dataURL = NSURL(string: myUrl)!
         
         // Prepares session
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
         // Calls url
-        let task = session.dataTaskWithURL(dataURL) { (data, response, error) in
+        let task = session.dataTask(with: dataURL as URL) { (data, response, error) in
             
             // Checks for errors
             if let error = error {
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             } else {
                 
                 // Checks for url response
-                if let http = response as? NSHTTPURLResponse {
+                if let http = response as? HTTPURLResponse {
                     if http.statusCode == 200 {
                         
                         // Gets data
@@ -50,13 +50,13 @@ class ViewController: UIViewController {
                             
                             do {
                                 // Parses Data
-                                let userData = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+                                let userData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
                                 // Gets API data
                                 if let dictionary = userData as? [NSObject: AnyObject] {
                                     
                                     // Sends Api data to another function where JSON objects are called
-                                    self.jsonData(dictionary)
+                                    self.jsonData(object: dictionary)
                                 }
                             }
                             catch let error as NSError {
