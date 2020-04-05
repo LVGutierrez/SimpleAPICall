@@ -8,17 +8,19 @@
 <code>
 // API Manager
     
+    // API Manager
+    
     func ApiManager() {
         
-        // API url
-        let myUrl = "url string"
+        // API url goes here
+        let myUrl = "YOUR URL HERE"
         let dataURL = NSURL(string: myUrl)!
         
-        // Prepare session
-        let session = NSURLSession.sharedSession()
+        // Prepares session
+        let session = URLSession.shared
         
-        // Call url
-        let task = session.dataTaskWithURL(dataURL) { (data, response, error) in
+        // Calls url
+        let task = session.dataTask(with: dataURL as URL) { (data, response, error) in
             
             // Checks for errors
             if let error = error {
@@ -26,7 +28,7 @@
             } else {
                 
                 // Checks for url response
-                if let http = response as? NSHTTPURLResponse {
+                if let http = response as? HTTPURLResponse {
                     if http.statusCode == 200 {
                         
                         // Gets data
@@ -34,13 +36,13 @@
                             
                             do {
                                 // Parses Data
-                                let userData = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+                                let userData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                                 
                                 // Gets API data
                                 if let dictionary = userData as? [NSObject: AnyObject] {
                                     
-                                    // Sends Api data to function where JSON objects are called
-                                    self.jsonData(dictionary)
+                                    // Sends Api data to another function where JSON objects are called
+                                    self.jsonData(object: dictionary)
                                 }
                             }
                             catch let error as NSError {
@@ -61,8 +63,16 @@
     
     func jsonData(object: [NSObject: AnyObject]) {
     
-        // JSON data
+        // JSON Code Here
     
     } // end jsonData
-</code>
-</pre>
+    
+   </code>
+   </pre>
+
+<h2>Updates</h2>
+<p>
+    <i>
+    *Code was updated to Swift 5.
+    </i>
+</p>
